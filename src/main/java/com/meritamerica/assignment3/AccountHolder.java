@@ -1,6 +1,6 @@
 package com.meritamerica.assignment3;
 
-public class AccountHolder {
+public class AccountHolder implements Comparable<AccountHolder>{
 	private String firstName = "";
 	private String middleName = "";
 	private String lastName = "";
@@ -184,5 +184,13 @@ public class AccountHolder {
 		return getCheckingBalance() + getSavingsBalance() + getCDBalance();
 
 	}
-
+	compareTo(AccountHolder otherAccountHolder) {
+		
+	}
+	String writeToString() {
+		
+	}
+	static AccountHolder readFromString(String accountHolderData) throws Exception {
+		
+	}
 }

@@ -13,14 +13,6 @@ public class CDAccount extends BankAccount {
 		this.offering = offering;
 	}
 	
-	public double getBalance() {
-		return balance;
-	}
-	
-	public double getInterestRate() {
-		return interestRate;
-	}
-	
 	public int getTerm() {
 		return offering.getTerm();
 	}
@@ -29,12 +21,14 @@ public class CDAccount extends BankAccount {
 		return date;
 	}
 	
-	public long getAccountNumber() {
-		return accountNumber;	
-	}
-	
 	public double futureValue() {
-		return balance*Math.pow(1 + getInterestRate(), getTerm());
+		return balance * Math.pow(1 + getInterestRate(), getTerm());
+	}
+	public boolean withdraw() {
+		return false;
 	}
 
+	public boolean deposit() {
+		return false;
+	}
 }

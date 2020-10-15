@@ -70,7 +70,7 @@ public class MeritBank {
 	}
 
 	public static long getNextAccountNumber() {
-		return nextAccount += 1;
+		return nextAccount++;
 	}
 
 	public static double totalBalances() {
@@ -88,6 +88,17 @@ public class MeritBank {
 		value = presentValue * powered;
 		return value;
 	}
-
+	
+	static boolean readFromFile(String fileName) {
+		
+	}
+	static boolean writeToFile(String fileName) {
+		
+	}
+	static AccountHolder[] sortAccountHolders() {
+		
+	}
+	static void setNextAccountNumber(long nextAccountNumber) {
+		nextAccount = nextAccountNumber;
+	}
 }
-

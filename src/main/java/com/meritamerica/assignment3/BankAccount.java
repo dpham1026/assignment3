@@ -1,5 +1,6 @@
 package com.meritamerica.assignment3;
 
+import java.text.*;
 import java.util.Date;
 
 
@@ -7,19 +8,23 @@ public class BankAccount {
 	public double balance;
 	public double interestRate;
 	public long accountNumber;
+	public Date accountOpenedOn;
 
 	public BankAccount(double balance, double interestRate) {
 		this(MeritBank.getNextAccountNumber(), balance, interestRate);
+	}
+	
+	public BankAccount(double balance, double interestRate, java.util.Date accountOpenedOn) {
+		this.balance = balance;
+		this.interestRate = interestRate;
+		this.accountOpenedOn = accountOpenedOn;
+		this.accountNumber = MeritBank.getNextAccountNumber();
 	}
 
 	public BankAccount(long accountNumber, double balance, double interestRate) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.interestRate = interestRate;
-	}
-
-	public BankAccount(double balance) {
-		this.balance = balance;
 	}
 
 	public long getAccountNumber() {
@@ -56,10 +61,19 @@ public class BankAccount {
 	}
 
 	public double futureValue(int years) {
-		double value = 0.00;
-		double powered = Math.pow((1 + interestRate), years);
-		value = balance * powered;
-		return value;
+		return balance = Math.pow((1 + interestRate), years);
+	}
+	java.util.Date accountOpenedOn() {
+		
+	}
+	java.util.Date getOpenedOn() {
+		
+	}
+	static BankAccount readFromString(String accountData) throws ParseException {
+		
+	}
+	String writeToString() {
+		
 	}
 
 }

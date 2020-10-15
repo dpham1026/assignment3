@@ -18,5 +18,12 @@ public class CDOffering {
 	public double getInterestRate() {
 		return interestRate;
 	}
-
+	
+	static CDOffering readFromString(String cdOfferingDataString) {
+		
+	}
+	
+	String writeToString() {
+		
+	}
 }
