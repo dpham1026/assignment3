@@ -65,7 +65,7 @@ public class BankAccount {
 	}
 
 	public double futureValue(int years) {
-		return balance = Math.pow((1 + interestRate), years);
+		return balance * Math.pow(1 + interestRate, years);
 	}
 	java.util.Date accountOpenedOn() {
 		return new Date();

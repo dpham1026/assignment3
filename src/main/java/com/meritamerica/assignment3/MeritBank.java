@@ -1,6 +1,7 @@
 package com.meritamerica.assignment3;
 
 import java.io.*;
+import java.text.*;
 import java.util.*;
 
 public class MeritBank {
@@ -120,8 +121,14 @@ public class MeritBank {
 			  }
 		}
 		reader.close();
-		} catch (Exception ex) {
-			System.out.println("Unable to open file.");
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+			return false;
+		} catch(ParseException pe) {
+			pe.printStackTrace();
+			return false;
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
 			return false;
 		}
 		return true;

@@ -31,11 +31,12 @@ public class CDAccount extends BankAccount {
 	public double futureValue() {
 		return balance * Math.pow(1 + getInterestRate(), getTerm());
 	}
-	public boolean withdraw() {
+	@Override
+	public boolean withdraw(double amount) {
 		return false;
 	}
-
-	public boolean deposit() {
+	@Override
+	public boolean deposit(double amount) {
 		return false;
 	}
 	static CDAccount readFromString(String accountData) throws ParseException {
