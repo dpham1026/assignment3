@@ -139,6 +139,23 @@ public class MeritBank {
 	}
 	static boolean writeToFile(String fileName) {
 		
+		try {
+			FileWriter file = new FileWriter(fileName);
+			BufferedWriter writer = new BufferedWriter(file);
+			writer.write((int) getNextAccountNumber());
+			writer.newLine(); 
+			writer.write(myCDOffering.length);
+			
+			
+			
+		} catch (IOException e) {
+			System.out.println("Cannot Read File");
+			
+		}
+		
+		return false;
+		
+		
 	}
 	static AccountHolder[] sortAccountHolders() {
 		
