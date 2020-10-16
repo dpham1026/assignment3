@@ -6,7 +6,7 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 	private String lastName = "";
 	private String SSN = "";
 	CheckingAccount[] checkingarray = new CheckingAccount[0];
-	SavingsAccount[] savingsarry = new SavingsAccount[0];
+	SavingsAccount[] savingsarray = new SavingsAccount[0];
 	CDAccount[] numberOfCDAccounts = new CDAccount[0];
 
 	public AccountHolder(String firstName, String middleName, String lastName, String ssn) {
@@ -94,14 +94,14 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 	}
 
 	public void addSavingsAccount(double openingBalance) {
-		SavingsAccount[] mysaArray = new SavingsAccount[savingsarry.length + 1];
+		SavingsAccount[] mysaArray = new SavingsAccount[savingsarray.length + 1];
 		SavingsAccount SAA = new SavingsAccount(openingBalance);
 		if (getCheckingBalance() + getSavingsBalance() + openingBalance < 250000) {
-			for (int i = 0; i < savingsarry.length; i++) {
-				mysaArray[i] = savingsarry[i];
+			for (int i = 0; i < savingsarray.length; i++) {
+				mysaArray[i] = savingsarray[i];
 			}
-			savingsarry = mysaArray;
-			savingsarry[savingsarry.length - 1] = SAA;
+			savingsarray = mysaArray;
+			savingsarray[savingsarray.length - 1] = SAA;
 
 		}
 		return;
@@ -109,13 +109,13 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 	}
 
 	public void addSavingsAccount(SavingsAccount savingsAccount) {
-		SavingsAccount[] mysaArray = new SavingsAccount[savingsarry.length + 1];
+		SavingsAccount[] mysaArray = new SavingsAccount[savingsarray.length + 1];
 		if (getCheckingBalance() + getSavingsBalance() + savingsAccount.getBalance() < 250000) {
-			for (int i = 0; i < savingsarry.length; i++) {
-				mysaArray[i] = savingsarry[i];
+			for (int i = 0; i < savingsarray.length; i++) {
+				mysaArray[i] = savingsarray[i];
 			}
-			savingsarry = mysaArray;
-			savingsarry[savingsarry.length - 1] = savingsAccount;
+			savingsarray = mysaArray;
+			savingsarray[savingsarray.length - 1] = savingsAccount;
 
 		}
 		return;
@@ -123,18 +123,18 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 	}
 
 	public SavingsAccount[] getSavingsAccounts() {
-		return savingsarry;
+		return savingsarray;
 	}
 
 	public int getNumberOfSavingsAccounts() {
-		return savingsarry.length;
+		return savingsarray.length;
 
 	}
 
 	public double getSavingsBalance() {
 		double SavingsBalance = 0.0;
-		for (int i = 0; i < savingsarry.length; i++) {
-			SavingsBalance += savingsarry[i].getBalance();
+		for (int i = 0; i < savingsarray.length; i++) {
+			SavingsBalance += savingsarray[i].getBalance();
 		}
 		return SavingsBalance;
 
@@ -184,16 +184,11 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 		return getCheckingBalance() + getSavingsBalance() + getCDBalance();
 
 	}
-	 
-	
 	compareTo(AccountHolder otherAccountHolder) {
 		
 	}
-	@Override
-	
 	String writeToString() {
-		String accountInfo = ""
-		// accountInfo lastName ",: 
+		return firstName + "," + middleName + "," + lastName + "," + SSN;
 	}
 	static AccountHolder readFromString(String accountHolderData) throws Exception {
 		

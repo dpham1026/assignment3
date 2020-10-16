@@ -19,7 +19,7 @@ public class CDAccount extends BankAccount {
 	}
 	
 	public int getTerm() {
-		return offering.getTerm();
+		return term;
 	}
 	
 	public Date getStartDate(){
@@ -35,5 +35,8 @@ public class CDAccount extends BankAccount {
 
 	public boolean deposit() {
 		return false;
+	}
+	String writeToString() {
+		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + term + "," + getOpenedOn();
 	}
 }

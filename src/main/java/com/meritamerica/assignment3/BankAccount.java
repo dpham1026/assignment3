@@ -77,6 +77,6 @@ public class BankAccount {
 		
 	}
 	String writeToString() {
-		
+		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + getOpenedOn();
 	}
 }

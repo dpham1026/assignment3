@@ -145,17 +145,41 @@ public class MeritBank {
 			writer.write((int) getNextAccountNumber());
 			writer.newLine(); 
 			writer.write(myCDOffering.length);
-			
-			
-			
+			writer.newLine();
+			for(int i = 0; i < myCDOffering.length; i++) {
+				writer.write(myCDOffering[i].writeToString());
+				writer.newLine();
+			}
+			writer.write(myAccountHolder.length);
+			writer.newLine();
+			for(int i = 0; i < myAccountHolder.length; i++) {
+				writer.write(myAccountHolder[i].writeToString());
+				writer.newLine();
+				writer.write(myAccountHolder[i].checkingarray.length);
+				writer.newLine();
+				for(int j = 0; j < myAccountHolder[i].getNumberOfCheckingAccounts(); j++) {
+					writer.write(myAccountHolder[i].checkingarray[j].writeToString());
+					writer.newLine();
+				}
+				writer.write(myAccountHolder[i].savingsarray.length);
+				writer.newLine();
+				for(int j = 0; j < myAccountHolder[i].getNumberOfSavingsAccounts(); j++) {
+					writer.write(myAccountHolder[i].savingsarray[j].writeToString());
+					writer.newLine();
+				}
+				writer.write(myAccountHolder[i].numberOfCDAccounts.length);
+				writer.newLine();
+				for(int j = 0; j < myAccountHolder[i].getNumberOfCDAccounts(); j++) {
+					writer.write(myAccountHolder[i].numberOfCDAccounts[j].writeToString());
+					writer.newLine();
+				}
+			}
+			writer.close();
 		} catch (IOException e) {
 			System.out.println("Cannot Read File");
-			
+			return false;
 		}
-		
-		return false;
-		
-		
+		return true;
 	}
 	static AccountHolder[] sortAccountHolders() {
 		
