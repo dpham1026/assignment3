@@ -13,6 +13,6 @@ public class SavingsAccount extends BankAccount {
 		super(accountNumber, balance, interestRate, accountOpenedOn);
 	}
 	static SavingsAccount readFromString(String accountData) throws ParseException {
-
+		
 	}
 }

@@ -36,6 +36,9 @@ public class CDAccount extends BankAccount {
 	public boolean deposit() {
 		return false;
 	}
+	static CDAccount readFromString(String accountData) throws ParseException {
+		
+	}
 	String writeToString() {
 		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + term + "," + getOpenedOn();
 	}

@@ -14,6 +14,6 @@ public class CheckingAccount extends BankAccount {
 	}
 	
 	static CheckingAccount readFromString(String accountData) throws ParseException {
-		
+
 	}
 }

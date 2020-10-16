@@ -182,7 +182,16 @@ public class MeritBank {
 		return true;
 	}
 	static AccountHolder[] sortAccountHolders() {
-		
+		ArrayList<AccountHolder> ac = new ArrayList<AccountHolder>();
+		for(int i = 0; i < myAccountHolder.length; i++) {
+			ac.add(myAccountHolder[i]);
+		}
+		Collections.sort(ac);
+		AccountHolder[] newAC = myAccountHolder;
+		for(int i = 0; i < myAccountHolder.length; i++) {
+			newAC[i] = ac.get(i);
+		}
+		return newAC;
 	}
 	static void setNextAccountNumber(long nextAccountNumber) {
 		nextAccount = nextAccountNumber;

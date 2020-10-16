@@ -1,6 +1,6 @@
 package com.meritamerica.assignment3;
 
-public abstract class AccountHolder implements Comparable<AccountHolder>{
+public class AccountHolder implements Comparable<AccountHolder>{
 	private String firstName = "";
 	private String middleName = "";
 	private String lastName = "";
@@ -48,7 +48,7 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 		SSN = sSN;
 	}
 
-	public void addCheckingAccount(double openingBalance) {
+	public CheckingAccount addCheckingAccount(double openingBalance) {
 		CheckingAccount[] mychArray = new CheckingAccount[checkingarray.length + 1];
 		CheckingAccount CHA = new CheckingAccount(openingBalance);
 		if (getCheckingBalance() + getSavingsBalance() + openingBalance <= 250000) {
@@ -56,23 +56,24 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 				mychArray[i] = checkingarray[i];
 			}
 			checkingarray = mychArray;
-			checkingarray[checkingarray.length - 1] = CHA;
+			return checkingarray[checkingarray.length - 1] = CHA;
 
-		}
-		return; 
+		} else
+			return null;
 	}
 
-	public void addCheckingAccount(CheckingAccount openingBalance) {
+	public CheckingAccount addCheckingAccount(CheckingAccount openingBalance) {
 		CheckingAccount[] mychArray = new CheckingAccount[checkingarray.length + 1];
 		if (getCheckingBalance() + getSavingsBalance() + openingBalance.getBalance() <= 250000) {
 			for (int i = 0; i < checkingarray.length; i++) {
 				mychArray[i] = checkingarray[i];
 			}
 			checkingarray = mychArray;
-			checkingarray[checkingarray.length - 1] = openingBalance;
+			return checkingarray[checkingarray.length - 1] = openingBalance;
 
-		}
-		return;
+		} else
+			return null;
+
 	}
 
 	public CheckingAccount[] getCheckingAccounts() {
@@ -93,7 +94,7 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 		return CheckingBalance;
 	}
 
-	public void addSavingsAccount(double openingBalance) {
+	public SavingsAccount addSavingsAccount(double openingBalance) {
 		SavingsAccount[] mysaArray = new SavingsAccount[savingsarray.length + 1];
 		SavingsAccount SAA = new SavingsAccount(openingBalance);
 		if (getCheckingBalance() + getSavingsBalance() + openingBalance < 250000) {
@@ -101,24 +102,24 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 				mysaArray[i] = savingsarray[i];
 			}
 			savingsarray = mysaArray;
-			savingsarray[savingsarray.length - 1] = SAA;
+			return savingsarray[savingsarray.length - 1] = SAA;
 
-		}
-		return;
+		} else
+			return null;
 
 	}
 
-	public void addSavingsAccount(SavingsAccount savingsAccount) {
+	public SavingsAccount addSavingsAccount(SavingsAccount savingsAccount) {
 		SavingsAccount[] mysaArray = new SavingsAccount[savingsarray.length + 1];
 		if (getCheckingBalance() + getSavingsBalance() + savingsAccount.getBalance() < 250000) {
 			for (int i = 0; i < savingsarray.length; i++) {
 				mysaArray[i] = savingsarray[i];
 			}
 			savingsarray = mysaArray;
-			savingsarray[savingsarray.length - 1] = savingsAccount;
+			return savingsarray[savingsarray.length - 1] = savingsAccount;
 
-		}
-		return;
+		} else
+			return null;
 
 	}
 
@@ -140,24 +141,24 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 
 	}
 
-	public void addCDAccount(CDOffering offering, double openingBalance) {
+	public CDAccount addCDAccount(CDOffering offering, double openingBalance) {
 		CDAccount[] mycdArray = new CDAccount[numberOfCDAccounts.length + 1];
 		CDAccount CDA = new CDAccount(offering, openingBalance);
 		for (int i = 0; i < numberOfCDAccounts.length; i++) {
 			mycdArray[i] = numberOfCDAccounts[i];
 		}
 		numberOfCDAccounts = mycdArray;
-		numberOfCDAccounts[numberOfCDAccounts.length - 1] = CDA;
+		return this.numberOfCDAccounts[numberOfCDAccounts.length - 1] = CDA;
 
 	}
 
-	public void addCDAccount(CDAccount cdAccount) {
+	public CDAccount addCDAccount(CDAccount cdAccount) {
 		CDAccount[] mycdArray = new CDAccount[numberOfCDAccounts.length + 1];
 		for (int i = 0; i < numberOfCDAccounts.length; i++) {
 			mycdArray[i] = numberOfCDAccounts[i];
 		}
 		numberOfCDAccounts = mycdArray;
-		numberOfCDAccounts[numberOfCDAccounts.length - 1] = cdAccount;
+		return numberOfCDAccounts[numberOfCDAccounts.length - 1] = cdAccount;
 
 	}
 
@@ -184,8 +185,13 @@ public abstract class AccountHolder implements Comparable<AccountHolder>{
 		return getCheckingBalance() + getSavingsBalance() + getCDBalance();
 
 	}
-	compareTo(AccountHolder otherAccountHolder) {
-		
+	public int compareTo(AccountHolder otherAccountHolder) {
+		if(getCombinedBalance() == otherAccountHolder.getCombinedBalance())  
+			return 0;  
+			else if(getCombinedBalance()>otherAccountHolder.getCombinedBalance())  
+			return 1;  
+			else  
+			return -1;  
 	}
 	String writeToString() {
 		return firstName + "," + middleName + "," + lastName + "," + SSN;

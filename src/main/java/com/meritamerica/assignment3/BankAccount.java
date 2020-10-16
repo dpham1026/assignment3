@@ -1,7 +1,7 @@
 package com.meritamerica.assignment3;
 
 import java.text.*;
-import java.util.Date;
+import java.util.*;
 
 
 public class BankAccount {
@@ -14,14 +14,14 @@ public class BankAccount {
 		this.balance = balance;
 		this.interestRate = interestRate;
 		this.accountOpenedOn = accountOpenedOn();
-		this.accountNumber = MeritBank.getNextAccountNumber();
+		this.accountNumber = 0;
 	}
 	
 	public BankAccount(double balance, double interestRate, java.util.Date accountOpenedOn) {
 		this.balance = balance;
 		this.interestRate = interestRate;
 		this.accountOpenedOn = accountOpenedOn;
-		this.accountNumber = MeritBank.getNextAccountNumber();
+		this.accountNumber = 0;
 	}
 
 	public BankAccount(long accountNumber, double balance, double interestRate, java.util.Date accountOpenedOn) {
@@ -68,13 +68,13 @@ public class BankAccount {
 		return balance = Math.pow((1 + interestRate), years);
 	}
 	java.util.Date accountOpenedOn() {
-		
+		return new Date();
 	}
 	java.util.Date getOpenedOn() {
-		return Date;
+		return accountOpenedOn;
 	}
 	static BankAccount readFromString(String accountData) throws ParseException {
-		
+		return null;
 	}
 	String writeToString() {
 		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + getOpenedOn();

@@ -20,10 +20,10 @@ public class CDOffering {
 	}
 	
 	static CDOffering readFromString(String cdOfferingDataString) {
-		
+
 	}
 	
 	String writeToString() {
-		
+		return term + "," + interestRate;
 	}
 }
