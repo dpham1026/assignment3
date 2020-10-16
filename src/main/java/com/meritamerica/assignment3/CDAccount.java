@@ -40,10 +40,11 @@ public class CDAccount extends BankAccount {
 		return false;
 	}
 	static CDAccount readFromString(String accountData) throws ParseException {
-		String[] cda = accountData.split(",");
-		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(cda[3]);
-		CDAccount newAccount = new CDAccount(Long.valueOf(cda[0]), Double.valueOf(cda[1]), Double.valueOf(cda[2]), date, Integer.valueOf(cda[4]));
-		return newAccount;
+			String[] cda = accountData.split(",");
+			Date date = new SimpleDateFormat("dd/MM/yyyy").parse(cda[3]);
+			CDAccount newAccount = new CDAccount(Long.valueOf(cda[0]), Double.valueOf(cda[1]), Double.valueOf(cda[2]), date, Integer.valueOf(cda[4]));
+			return newAccount;
+
 	}
 	String writeToString() {
 		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + term + "," + getOpenedOn();

@@ -15,8 +15,9 @@ public class SavingsAccount extends BankAccount {
 	}
 	static SavingsAccount readFromString(String accountData) throws ParseException {
 		String[] sa = accountData.split(",");
-		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(sa[3]);
-		SavingsAccount newAccount = new SavingsAccount(Long.valueOf(sa[0]), Double.valueOf(sa[1]), Double.valueOf(sa[2]), date);
+		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+		Date newDate = date.parse(sa[3]);
+		SavingsAccount newAccount = new SavingsAccount(Long.parseLong(sa[0]), Double.parseDouble(sa[1]), Double.parseDouble(sa[2]), newDate);
 		return newAccount;
 	}
 }

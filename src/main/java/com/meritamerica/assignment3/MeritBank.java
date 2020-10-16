@@ -97,11 +97,10 @@ public class MeritBank {
 		FileInputStream fileStream = new FileInputStream(fileName);
 		InputStreamReader input = new InputStreamReader(fileStream);
 		BufferedReader reader = new BufferedReader(input);
-		while ((reader.readLine()) != null && reader.readLine() != "") {
-			  nextAccount = Integer.valueOf(reader.readLine());
-			  myCDOffering = new CDOffering[Integer.valueOf(reader.readLine())];
-			  for(int i = 0; i < myCDOffering.length; i++) {
-				  myCDOffering[i] = (CDOffering.readFromString(reader.readLine()));
+		nextAccount = Integer.valueOf(reader.readLine());
+		myCDOffering = new CDOffering[Integer.valueOf(reader.readLine())];
+		for(int i = 0; i < myCDOffering.length; i++) {
+		  myCDOffering[i] = (CDOffering.readFromString(reader.readLine()));
 			  }
 			  myAccountHolder = new AccountHolder[Integer.valueOf(reader.readLine())];
 			  for(int i = 0; i < myAccountHolder.length; i++) {
@@ -119,7 +118,6 @@ public class MeritBank {
 					  myAccountHolder[i].addCDAccount(CDAccount.readFromString(reader.readLine()));
 				  }
 			  }
-		}
 		reader.close();
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
@@ -129,6 +127,9 @@ public class MeritBank {
 			return false;
 		} catch(IOException ioe) {
 			ioe.printStackTrace();
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;

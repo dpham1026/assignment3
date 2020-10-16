@@ -13,10 +13,9 @@ public class CheckingAccount extends BankAccount {
 	public CheckingAccount(long accountNumber, double balance, double interestRate, java.util.Date accountOpenedOn) {
 		super(accountNumber, balance, interestRate, accountOpenedOn);
 	}
-	
 	static CheckingAccount readFromString(String accountData) throws ParseException {
 		String[] ca = accountData.split(",");
-		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(ca[3]);
+		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(ca[3]);
 		CheckingAccount newAccount = new CheckingAccount(Long.valueOf(ca[0]), Double.valueOf(ca[1]), Double.valueOf(ca[2]), date);
 		return newAccount;
 	}

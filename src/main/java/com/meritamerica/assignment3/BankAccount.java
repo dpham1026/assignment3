@@ -74,7 +74,10 @@ public class BankAccount {
 		return accountOpenedOn;
 	}
 	static BankAccount readFromString(String accountData) throws ParseException {
-		return null;
+		String[] ba = accountData.split(",");
+		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(ba[3]);
+		SavingsAccount newAccount = new SavingsAccount(Long.valueOf(ba[0]), Double.valueOf(ba[1]), Double.valueOf(ba[2]), date);
+		return newAccount;
 	}
 	String writeToString() {
 		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + getOpenedOn();
