@@ -1,7 +1,6 @@
 package com.meritamerica.assignment3;
 
 import java.io.*;
-import java.text.*;
 import java.util.*;
 
 public class MeritBank {
@@ -10,13 +9,13 @@ public class MeritBank {
 	static CDAccount myCDAccount[] = new CDAccount[0];
 	private static long nextAccount = 0;
 
-	public static void addAccountHolder(AccountHolder accountHolder) {
+	public static AccountHolder addAccountHolder(AccountHolder accountHolder) {
 		AccountHolder[] myAccountHolder1 = new AccountHolder[myAccountHolder.length + 1];
 		for (int i = 0; i < myAccountHolder.length; i++) {
 			myAccountHolder1[i] = myAccountHolder[i];
 		}
 		myAccountHolder = myAccountHolder1;
-		myAccountHolder[myAccountHolder.length - 1] = accountHolder;
+		return myAccountHolder[myAccountHolder.length - 1] = accountHolder;
 
 	}
 
@@ -101,36 +100,26 @@ public class MeritBank {
 			  nextAccount = Integer.valueOf(reader.readLine());
 			  myCDOffering = new CDOffering[Integer.valueOf(reader.readLine())];
 			  for(int i = 0; i < myCDOffering.length; i++) {
-				  String[] cd = reader.readLine().split(",");
-				  myCDOffering[i] = new CDOffering(Integer.valueOf(cd[0]), Double.valueOf(cd[1]));
+				  myCDOffering[i] = (CDOffering.readFromString(reader.readLine()));
 			  }
 			  myAccountHolder = new AccountHolder[Integer.valueOf(reader.readLine())];
 			  for(int i = 0; i < myAccountHolder.length; i++) {
-				  String[] ac = reader.readLine().split(",");
-				  myAccountHolder[i] = new AccountHolder(ac[0], ac[1], ac[2], ac[3]);
+				  myAccountHolder[i] = addAccountHolder(AccountHolder.readFromString(reader.readLine()));
 				  int numChecking = Integer.valueOf(reader.readLine());
 				  for(int j = 0; j < numChecking; j++) {
-					  String[] ca = reader.readLine().split(",");
-					  Date date = new SimpleDateFormat("MM/dd/yyyy").parse(ca[3]);
-					  CheckingAccount newAccount = new CheckingAccount(Long.valueOf(ca[0]), Double.valueOf(ca[1]), Double.valueOf(ca[2]), date);
-					  myAccountHolder[i].addCheckingAccount(newAccount);
+					  myAccountHolder[i].addCheckingAccount(CheckingAccount.readFromString(reader.readLine()));
 				  }
 				  int numSavings = Integer.valueOf(reader.readLine());
 				  for(int j = 0; j < numSavings; j++) {
-					  String[] sa = reader.readLine().split(",");
-					  Date date = new SimpleDateFormat("MM/dd/yyyy").parse(sa[3]);
-					  SavingsAccount newAccount = new SavingsAccount(Long.valueOf(sa[0]), Double.valueOf(sa[1]), Double.valueOf(sa[2]), date);
-					  myAccountHolder[i].addSavingsAccount(newAccount);
+					  myAccountHolder[i].addSavingsAccount(SavingsAccount.readFromString(reader.readLine()));
 				  }
 				  int numCD = Integer.valueOf(reader.readLine());
 				  for(int j = 0; j < numCD; j++) {
-					  String[] cda = reader.readLine().split(",");
-					  Date date = new SimpleDateFormat("MM/dd/yyyy").parse(cda[3]);
-					  CDAccount newAccount = new CDAccount(Long.valueOf(cda[0]), Double.valueOf(cda[1]), Double.valueOf(cda[2]), date, Integer.valueOf(cda[4]));
-					  myAccountHolder[i].addCDAccount(newAccount);
+					  myAccountHolder[i].addCDAccount(CDAccount.readFromString(reader.readLine()));
 				  }
 			  }
 		}
+		reader.close();
 		} catch (Exception ex) {
 			System.out.println("Unable to open file.");
 			return false;

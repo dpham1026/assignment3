@@ -1,6 +1,7 @@
 package com.meritamerica.assignment3;
 
 import java.text.*;
+import java.util.Date;
 
 public class CheckingAccount extends BankAccount {
 	
@@ -14,6 +15,9 @@ public class CheckingAccount extends BankAccount {
 	}
 	
 	static CheckingAccount readFromString(String accountData) throws ParseException {
-
+		String[] ca = accountData.split(",");
+		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(ca[3]);
+		CheckingAccount newAccount = new CheckingAccount(Long.valueOf(ca[0]), Double.valueOf(ca[1]), Double.valueOf(ca[2]), date);
+		return newAccount;
 	}
 }

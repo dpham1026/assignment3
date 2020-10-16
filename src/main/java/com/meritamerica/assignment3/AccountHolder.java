@@ -197,6 +197,8 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		return firstName + "," + middleName + "," + lastName + "," + SSN;
 	}
 	static AccountHolder readFromString(String accountHolderData) throws Exception {
-		
+		String[] ac = accountHolderData.split(",");
+		AccountHolder newAC = new AccountHolder(ac[0], ac[1], ac[2], ac[3]);
+		return newAC;
 	}
 }

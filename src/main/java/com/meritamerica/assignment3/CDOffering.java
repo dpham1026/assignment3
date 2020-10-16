@@ -20,7 +20,10 @@ public class CDOffering {
 	}
 	
 	static CDOffering readFromString(String cdOfferingDataString) {
-
+		  String[] cd = cdOfferingDataString.split(",");
+		  CDOffering newCD = new CDOffering(Integer.valueOf(cd[0]), Double.valueOf(cd[1]));
+		  return newCD;
+		  
 	}
 	
 	String writeToString() {
