@@ -9,6 +9,10 @@ public class CheckingAccount extends BankAccount {
 	public CheckingAccount(double balance) {
 		super(balance, CHECKING_RATE);
 	}
+	public CheckingAccount(long accountNumber, double balance, double interestRate, java.util.Date accountOpenedOn) {
+		super(accountNumber, balance, interestRate, accountOpenedOn);
+	}
+	
 	static CheckingAccount readFromString(String accountData) throws ParseException {
 		
 	}

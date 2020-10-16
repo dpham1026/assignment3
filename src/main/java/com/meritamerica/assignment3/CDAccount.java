@@ -3,14 +3,19 @@ package com.meritamerica.assignment3;
 import java.util.Date;
 
 public class CDAccount extends BankAccount {
-	CDOffering offering;
-	Date date;
+	private CDOffering offering;
+	private Date date;
+	private int term;
 
 		
 	public CDAccount(CDOffering offering, double openBalance){
-		super(MeritBank.getNextAccountNumber(), openBalance, offering.getInterestRate());
+		super(openBalance, offering.getInterestRate());
 		this.date = new Date();
 		this.offering = offering;
+	}
+	public CDAccount(long accountNumber, double balance, double interestRate, java.util.Date accountOpenedOn, int term) {
+		super(accountNumber, balance, interestRate, accountOpenedOn);
+		this.term = term;
 	}
 	
 	public int getTerm() {

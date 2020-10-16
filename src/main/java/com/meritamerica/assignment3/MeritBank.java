@@ -1,10 +1,8 @@
 package com.meritamerica.assignment3;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.text.*;
+import java.util.*;
 
 public class MeritBank {
 	static AccountHolder myAccountHolder[] = new AccountHolder[0];
@@ -99,19 +97,46 @@ public class MeritBank {
 		FileInputStream fileStream = new FileInputStream(fileName);
 		InputStreamReader input = new InputStreamReader(fileStream);
 		BufferedReader reader = new BufferedReader(input);
-		
-		
 		while ((reader.readLine()) != null && reader.readLine() != "") {
-			 nextAccount = reader.readLine();
-			 
-			 
-			{
-		
-		} catch (IOException ex) {
+			  nextAccount = Integer.valueOf(reader.readLine());
+			  myCDOffering = new CDOffering[Integer.valueOf(reader.readLine())];
+			  for(int i = 0; i < myCDOffering.length; i++) {
+				  String[] cd = reader.readLine().split(",");
+				  myCDOffering[i] = new CDOffering(Integer.valueOf(cd[0]), Double.valueOf(cd[1]));
+			  }
+			  myAccountHolder = new AccountHolder[Integer.valueOf(reader.readLine())];
+			  for(int i = 0; i < myAccountHolder.length; i++) {
+				  String[] ac = reader.readLine().split(",");
+				  myAccountHolder[i] = new AccountHolder(ac[0], ac[1], ac[2], ac[3]);
+				  int numChecking = Integer.valueOf(reader.readLine());
+				  for(int j = 0; j < numChecking; j++) {
+					  String[] ca = reader.readLine().split(",");
+					  Date date = new SimpleDateFormat("MM/dd/yyyy").parse(ca[3]);
+					  CheckingAccount newAccount = new CheckingAccount(Long.valueOf(ca[0]), Double.valueOf(ca[1]), Double.valueOf(ca[2]), date);
+					  myAccountHolder[i].addCheckingAccount(newAccount);
+				  }
+				  int numSavings = Integer.valueOf(reader.readLine());
+				  for(int j = 0; j < numSavings; j++) {
+					  String[] sa = reader.readLine().split(",");
+					  Date date = new SimpleDateFormat("MM/dd/yyyy").parse(sa[3]);
+					  SavingsAccount newAccount = new SavingsAccount(Long.valueOf(sa[0]), Double.valueOf(sa[1]), Double.valueOf(sa[2]), date);
+					  myAccountHolder[i].addSavingsAccount(newAccount);
+				  }
+				  int numCD = Integer.valueOf(reader.readLine());
+				  for(int j = 0; j < numCD; j++) {
+					  String[] cda = reader.readLine().split(",");
+					  Date date = new SimpleDateFormat("MM/dd/yyyy").parse(cda[3]);
+					  CDAccount newAccount = new CDAccount(Long.valueOf(cda[0]), Double.valueOf(cda[1]), Double.valueOf(cda[2]), date, Integer.valueOf(cda[4]));
+					  myAccountHolder[i].addCDAccount(newAccount);
+				  }
+			  }
+		}
+		} catch (Exception ex) {
 			System.out.println("Unable to open file.");
 			return false;
-		} 
-	} 
+		}
+		return true;
+	}
 	static boolean writeToFile(String fileName) {
 		
 	}

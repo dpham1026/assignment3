@@ -59,7 +59,7 @@ public class AccountHolder implements Comparable<AccountHolder>{
 			checkingarray[checkingarray.length - 1] = CHA;
 
 		}
-		return;
+		return; 
 	}
 
 	public void addCheckingAccount(CheckingAccount openingBalance) {

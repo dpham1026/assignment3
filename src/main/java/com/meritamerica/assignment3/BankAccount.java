@@ -11,7 +11,10 @@ public class BankAccount {
 	public Date accountOpenedOn;
 
 	public BankAccount(double balance, double interestRate) {
-		this(MeritBank.getNextAccountNumber(), balance, interestRate);
+		this.balance = balance;
+		this.interestRate = interestRate;
+		this.accountOpenedOn = accountOpenedOn();
+		this.accountNumber = MeritBank.getNextAccountNumber();
 	}
 	
 	public BankAccount(double balance, double interestRate, java.util.Date accountOpenedOn) {
@@ -21,10 +24,11 @@ public class BankAccount {
 		this.accountNumber = MeritBank.getNextAccountNumber();
 	}
 
-	public BankAccount(long accountNumber, double balance, double interestRate) {
+	public BankAccount(long accountNumber, double balance, double interestRate, java.util.Date accountOpenedOn) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.interestRate = interestRate;
+		this.accountOpenedOn = accountOpenedOn;
 	}
 
 	public long getAccountNumber() {
@@ -67,7 +71,7 @@ public class BankAccount {
 		
 	}
 	java.util.Date getOpenedOn() {
-		
+		return Date;
 	}
 	static BankAccount readFromString(String accountData) throws ParseException {
 		
@@ -75,5 +79,4 @@ public class BankAccount {
 	String writeToString() {
 		
 	}
-
 }
