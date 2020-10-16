@@ -184,6 +184,8 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		return getCheckingBalance() + getSavingsBalance() + getCDBalance();
 
 	}
+	 
+	
 	compareTo(AccountHolder otherAccountHolder) {
 		
 	}

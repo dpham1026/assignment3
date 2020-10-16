@@ -1,5 +1,10 @@
 package com.meritamerica.assignment3;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MeritBank {
 	static AccountHolder myAccountHolder[] = new AccountHolder[0];
@@ -90,8 +95,23 @@ public class MeritBank {
 	}
 	
 	static boolean readFromFile(String fileName) {
+		try {
+		FileInputStream fileStream = new FileInputStream(fileName);
+		InputStreamReader input = new InputStreamReader(fileStream);
+		BufferedReader reader = new BufferedReader(input);
 		
-	}
+		
+		while ((reader.readLine()) != null && reader.readLine() != "") {
+			 nextAccount = reader.readLine();
+			 
+			 
+			{
+		
+		} catch (IOException ex) {
+			System.out.println("Unable to open file.");
+			return false;
+		} 
+	} 
 	static boolean writeToFile(String fileName) {
 		
 	}
