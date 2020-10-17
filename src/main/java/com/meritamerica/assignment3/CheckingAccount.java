@@ -14,10 +14,15 @@ public class CheckingAccount extends BankAccount {
 		super(accountNumber, balance, interestRate, accountOpenedOn);
 	}
 	
-	static CheckingAccount readFromString(String accountData) throws ParseException {
-		String[] ca = accountData.split(",");
-		Date date = new SimpleDateFormat("MM/dd/yyyy").parse(ca[3]);
-		CheckingAccount newAccount = new CheckingAccount(Long.valueOf(ca[0]), Double.valueOf(ca[1]), Double.valueOf(ca[2]), date);
-		return newAccount;
-	}
-}
+	public static CheckingAccount readFromString(String accountData)throws ParseException {
+    	
+		String [] ca = accountData.split(",");
+		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+		long accountNumber = Long.parseLong(ca[0]);
+		double balance = Double.parseDouble(ca[1]);
+		double interestRate = Double.parseDouble(ca[2]);
+		Date accountOpenedOn = date.parse(ca[3]);
+		CheckingAccount newCheckingAccount = new CheckingAccount(accountNumber, balance, interestRate, accountOpenedOn);
+		return newCheckingAccount;
+}   
+} 	

@@ -76,6 +76,7 @@ public class BankAccount {
 	static BankAccount readFromString(String accountData) throws ParseException {
 		return null;
 	}
+	
 	String writeToString() {
 		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + getOpenedOn();
 	}
