@@ -1,26 +1,36 @@
 package com.meritamerica.assignment3;
 
-import java.text.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SavingsAccount extends BankAccount {
+class SavingsAccount extends BankAccount {
 	
-	private static final double SAVINGS_RATE = 0.01;
+	public static final double INTEREST_RATE = 0.01;
+	
+	public SavingsAccount(double openBalance, double interestRate){
+		super(openBalance, interestRate);
+	}
+	
+	public SavingsAccount (long accountNumber, double openBalance, double interestRate, Date accountOpenedOn) {
+		super(accountNumber, openBalance, interestRate, accountOpenedOn);
+	}
+	
+	public String toString() {
+		return "Savings Account Balance: $" + balance + "\n" + 
+				"Savings Account Interest Rate: " + INTEREST_RATE + "\n" + 
+				"Savings Account Balance in 3 years: $" + futureValue(3);
+	
+	}
+	
+	public static SavingsAccount readFromString(String accountData)throws ParseException, NumberFormatException {
+    	String [] holding = accountData.split(",");
+    	SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+    	long accountNumber = Long.parseLong(holding[0]);
+    	double balance = Double.parseDouble(holding[1]);
+    	double interestRate = Double.parseDouble(holding[2]);
+    	Date accountOpenedOn = date.parse(holding[3]);
 
-	public SavingsAccount(double balance) {
-		super(balance, SAVINGS_RATE);
-	}
-	public SavingsAccount(long accountNumber, double balance, double interestRate, java.util.Date accountOpenedOn) {
-		super(accountNumber, balance, interestRate, accountOpenedOn);
-	}
-	static SavingsAccount readFromString(String accountData) throws ParseException {
-		String [] sa = accountData.split(",");
-		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-		long accountNumber = Long.parseLong(sa[0]);
-		double balance = Double.parseDouble(sa[1]);
-		double interestRate = Double.parseDouble(sa[2]);
-		Date accountOpenedOn = date.parse(sa[3]);
-		SavingsAccount newSavingsAccount = new SavingsAccount(accountNumber, balance, interestRate, accountOpenedOn);
-		return newSavingsAccount;
+    	return new SavingsAccount(accountNumber, balance, interestRate, accountOpenedOn);
 	}
 }
