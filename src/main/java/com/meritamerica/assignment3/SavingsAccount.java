@@ -14,10 +14,13 @@ public class SavingsAccount extends BankAccount {
 		super(accountNumber, balance, interestRate, accountOpenedOn);
 	}
 	static SavingsAccount readFromString(String accountData) throws ParseException {
-		String[] sa = accountData.split(",");
+		String [] sa = accountData.split(",");
 		SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-		Date newDate = date.parse(sa[3]);
-		SavingsAccount newAccount = new SavingsAccount(Long.parseLong(sa[0]), Double.parseDouble(sa[1]), Double.parseDouble(sa[2]), newDate);
-		return newAccount;
+		long accountNumber = Long.parseLong(sa[0]);
+		double balance = Double.parseDouble(sa[1]);
+		double interestRate = Double.parseDouble(sa[2]);
+		Date accountOpenedOn = date.parse(sa[3]);
+		SavingsAccount newSavingsAccount = new SavingsAccount(accountNumber, balance, interestRate, accountOpenedOn);
+		return newSavingsAccount;
 	}
 }

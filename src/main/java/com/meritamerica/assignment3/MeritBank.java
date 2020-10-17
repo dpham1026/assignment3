@@ -91,106 +91,120 @@ public class MeritBank {
 		value = presentValue * powered;
 		return value;
 	}
-	
+
 	static boolean readFromFile(String fileName) {
 		try {
-		FileInputStream fileStream = new FileInputStream(fileName);
-		InputStreamReader input = new InputStreamReader(fileStream);
-		BufferedReader reader = new BufferedReader(input);
-		nextAccount = Integer.valueOf(reader.readLine());
-		myCDOffering = new CDOffering[Integer.valueOf(reader.readLine())];
-		for(int i = 0; i < myCDOffering.length; i++) {
-		  myCDOffering[i] = (CDOffering.readFromString(reader.readLine()));
-			  }
-			  myAccountHolder = new AccountHolder[Integer.valueOf(reader.readLine())];
-			  for(int i = 0; i < myAccountHolder.length; i++) {
-				  myAccountHolder[i] = addAccountHolder(AccountHolder.readFromString(reader.readLine()));
-				  int numChecking = Integer.valueOf(reader.readLine());
-				  for(int j = 0; j < numChecking; j++) {
-					  myAccountHolder[i].addCheckingAccount(CheckingAccount.readFromString(reader.readLine()));
-				  }
-				  int numSavings = Integer.valueOf(reader.readLine());
-				  for(int j = 0; j < numSavings; j++) {
-					  myAccountHolder[i].addSavingsAccount(SavingsAccount.readFromString(reader.readLine()));
-				  }
-				  int numCD = Integer.valueOf(reader.readLine());
-				  for(int j = 0; j < numCD; j++) {
-					  myAccountHolder[i].addCDAccount(CDAccount.readFromString(reader.readLine()));
-				  }
-			  }
-		reader.close();
+			FileInputStream fileStream = new FileInputStream(fileName);
+			InputStreamReader input = new InputStreamReader(fileStream);
+			BufferedReader reader = new BufferedReader(input);
+			String currentLine = reader.readLine();
+			while ((currentLine) != null && currentLine != "") {
+				nextAccount = Integer.valueOf(currentLine);
+				currentLine = reader.readLine();
+				myCDOffering = new CDOffering[Integer.valueOf(currentLine)];
+				for (int i = 0; i < myCDOffering.length; i++) {
+					currentLine = reader.readLine();
+					myCDOffering[i] = (CDOffering.readFromString(currentLine));
+				}
+				currentLine = reader.readLine();
+				myAccountHolder = new AccountHolder[Integer.valueOf(currentLine)];
+				for (int i = 0; i < myAccountHolder.length; i++) {
+					currentLine = reader.readLine();
+					myAccountHolder[i] = addAccountHolder(AccountHolder.readFromString(currentLine));
+					int numChecking = Integer.valueOf(reader.readLine());
+					for (int j = 0; j < numChecking; j++) {
+						currentLine = reader.readLine();
+						myAccountHolder[i].addCheckingAccount(CheckingAccount.readFromString(currentLine));
+					}
+					int numSavings = Integer.valueOf(reader.readLine());
+					for (int j = 0; j < numSavings; j++) {
+						currentLine = reader.readLine();
+						myAccountHolder[i].addSavingsAccount(SavingsAccount.readFromString(currentLine));
+					}
+					int numCD = Integer.valueOf(reader.readLine());
+					for (int j = 0; j < numCD; j++) {
+						currentLine = reader.readLine();
+						myAccountHolder[i].addCDAccount(CDAccount.readFromString(currentLine));
+					}
+				}
+			}
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
 			return false;
-		} catch(ParseException pe) {
+		} catch (ParseException pe) {
 			pe.printStackTrace();
 			return false;
-		} catch(IOException ioe) {
+		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			return true;
 		}
-		return true;
 	}
+
 	static boolean writeToFile(String fileName) {
-		
+
 		try {
 			FileWriter file = new FileWriter(fileName);
 			BufferedWriter writer = new BufferedWriter(file);
 			writer.write((int) getNextAccountNumber());
-			writer.newLine(); 
+			writer.newLine();
 			writer.write(myCDOffering.length);
 			writer.newLine();
-			for(int i = 0; i < myCDOffering.length; i++) {
+			for (int i = 0; i < myCDOffering.length; i++) {
 				writer.write(myCDOffering[i].writeToString());
 				writer.newLine();
 			}
 			writer.write(myAccountHolder.length);
 			writer.newLine();
-			for(int i = 0; i < myAccountHolder.length; i++) {
+			for (int i = 0; i < myAccountHolder.length; i++) {
 				writer.write(myAccountHolder[i].writeToString());
 				writer.newLine();
 				writer.write(myAccountHolder[i].checkingarray.length);
 				writer.newLine();
-				for(int j = 0; j < myAccountHolder[i].getNumberOfCheckingAccounts(); j++) {
+				for (int j = 0; j < myAccountHolder[i].getNumberOfCheckingAccounts(); j++) {
 					writer.write(myAccountHolder[i].checkingarray[j].writeToString());
 					writer.newLine();
 				}
 				writer.write(myAccountHolder[i].savingsarray.length);
 				writer.newLine();
-				for(int j = 0; j < myAccountHolder[i].getNumberOfSavingsAccounts(); j++) {
-					writer.write(myAccountHolder[i].savingsarray[j].writeToString());
+				for (int k = 0; k < myAccountHolder[i].getNumberOfSavingsAccounts(); k++) {
+					writer.write(myAccountHolder[i].savingsarray[k].writeToString());
 					writer.newLine();
 				}
 				writer.write(myAccountHolder[i].numberOfCDAccounts.length);
 				writer.newLine();
-				for(int j = 0; j < myAccountHolder[i].getNumberOfCDAccounts(); j++) {
-					writer.write(myAccountHolder[i].numberOfCDAccounts[j].writeToString());
+				for (int l = 0; l < myAccountHolder[i].getNumberOfCDAccounts(); l++) {
+					writer.write(myAccountHolder[i].numberOfCDAccounts[l].writeToString());
 					writer.newLine();
 				}
 			}
-			writer.close();
-		} catch (IOException e) {
+		} 
+			catch (Exception e) {
 			System.out.println("Cannot Read File");
 			return false;
+		} finally {
+			return true;
 		}
-		return true;
 	}
+
 	static AccountHolder[] sortAccountHolders() {
 		ArrayList<AccountHolder> ac = new ArrayList<AccountHolder>();
-		for(int i = 0; i < myAccountHolder.length; i++) {
+		for (int i = 0; i < myAccountHolder.length; i++) {
 			ac.add(myAccountHolder[i]);
 		}
 		Collections.sort(ac);
 		AccountHolder[] newAC = myAccountHolder;
-		for(int i = 0; i < myAccountHolder.length; i++) {
+		for (int i = 0; i < myAccountHolder.length; i++) {
 			newAC[i] = ac.get(i);
 		}
 		return newAC;
 	}
-	static void setNextAccountNumber(long nextAccountNumber) {
-		nextAccount = nextAccountNumber;
+
+	static void setNextAccountNumber(long accountNumber) {
+		nextAccount = accountNumber;
 	}
 }

@@ -79,6 +79,7 @@ public class BankAccount {
 		SavingsAccount newAccount = new SavingsAccount(Long.valueOf(ba[0]), Double.valueOf(ba[1]), Double.valueOf(ba[2]), date);
 		return newAccount;
 	}
+	
 	String writeToString() {
 		return getAccountNumber() + "," + getBalance() + "," + getInterestRate() + "," + getOpenedOn();
 	}
